@@ -1,0 +1,14 @@
+CREATE THE TABLE
+
+CREATE TABLE employees(employee_id int, firstName string, lastName string) PARTITIONED BY(Town string) 
+CLUSTERED BY(employee_id) INTO 256
+STORED AS ORC
+tblproperties('transactional'='true')
+
+
+INSERT INTO TABLE(1,'William','Hatzar') (PARTITION="WALTHAMSTOW")
+
+UPDATE employees set lastName="Hatzar" WHERE id=2;
+
+ALTER TABLE employees ADD COLUMNS(POST_CODE VARCHAR);
+
